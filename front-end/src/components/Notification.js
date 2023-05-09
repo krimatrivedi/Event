@@ -41,14 +41,9 @@ function Notification({ style }) {
       message = `${notif.actor_user.username} liked your restaurant`;
     } else if (notif.type === "FOLLOWED") {
       message = `${notif.actor_user.username} followed your restaurant`;
-    } else if (notif.type === "COMMENTED") {
-      message = `${notif.actor_user.username} commented on your restaurant`;
-    } else if (notif.type === "LIKEDBLOG") {
-      message = `${notif.actor_user.username} liked your blog`;
+    
     } else if (notif.type === "MENUUPDATE") {
       message = `${notif.restaurant.name} updated their menu`;
-    } else if (notif.type === "NEWBLOG") {
-      message = `${notif.restaurant.name} posted a new blog post`;
     } else {
       // should never be reached unless there is a bug
       message = `TODO add message for ${notif.type}`;
@@ -98,7 +93,7 @@ function Notification({ style }) {
             style={style}
             icon={
               <FaBell
-                style={{ color: "white", width: "20px", height: "20px" }}
+                style={{ color: "grey", width: "20px", height: "20px" }}
               />
             }
           />

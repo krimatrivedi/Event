@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import * as colors from "../utils/colors";
 import { useNavigate } from "react-router-dom";
-import { FaHeart, FaCommentDots, FaQuestionCircle } from "react-icons/fa";
+import { FaHeart, FaQuestionCircle } from "react-icons/fa";
 import axios from "axios";
 import React, { useState } from "react";
 
@@ -61,7 +61,7 @@ function MenuItem({
     if (descriptionState) formData.append("description", descriptionState);
 
     if (menuItemPicture) formData.append("picture", menuItemPicture);
-
+    
     axios
       .patch(
         `http://127.0.0.1:8000/restaurants/${res_id}/menu/${id}/edit/`,

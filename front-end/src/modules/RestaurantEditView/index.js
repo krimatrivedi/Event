@@ -33,17 +33,15 @@ import * as colors from "../../utils/colors";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import MainNavBar from "../../components/MainNavBar";
+import EventsNavBar from "../../components/EventsNavBar";
 import MenuItems from "../../components/MenuItems";
-import Comments from "../../components/Comments";
 import Carousel from "../../components/Carousel";
-import BlogsSmall from "../../components/BlogsSmall";
 import { useNavigate } from "react-router-dom";
 
-function RestaurantView() {
+function EventView() {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState([]);
-  const [followers, setFollowers] = useState(0);
+  
   const [likes, setLikes] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hoveringLogo, setHoveringLogo] = useState(false);
@@ -137,7 +135,7 @@ function RestaurantView() {
         setRestaurantPhoneNum(res.data.phone_num);
         setCurNewRestaurantLogo(res.data.logo);
 
-        setFollowers(res.data.followers.length);
+        
         setLikes(res.data.likes.length);
 
         setLoading(false);
@@ -186,7 +184,7 @@ function RestaurantView() {
 
   return (
     <Box>
-      <MainNavBar />
+      <EventsNavBar />
       {!loading ? (
         <Box
           style={{
@@ -284,9 +282,7 @@ function RestaurantView() {
                   <Stack marginTop="2rem" marginBottom="1rem">
                     <Tag size="md" background={colors.grey.dark}>
                       <FaUserFriends color="white" />
-                      <TagLabel marginLeft="0.5rem" color="white">
-                        {restaurant.followers && `Followers: ${followers}`}
-                      </TagLabel>
+                     
                     </Tag>
                     <Tag size="md" background={colors.grey.dark}>
                       <FaHeart color="white" />
@@ -303,9 +299,6 @@ function RestaurantView() {
                 <Tabs variant="soft-rounded" marginTop="2rem">
                   <TabList color="white">
                     <Tab color="white">GENERAL</Tab>
-                    <Tab color="white">COMMENTS</Tab>
-                    <Tab color="white">PICTURES</Tab>
-                    <Tab color="white">BLOG POSTS</Tab>
                   </TabList>
                   <TabPanels>
                     {/* General */}
@@ -502,18 +495,9 @@ function RestaurantView() {
                         </ModalContent>
                       </Modal>
                     </TabPanel>
-                    {/* Comments */}
-                    <TabPanel>
-                      <Comments id={id} isOwner />
-                    </TabPanel>
-                    {/* Pictures */}
-                    <TabPanel>
-                      <Carousel res_id={id} isOwner />
-                    </TabPanel>
-                    {/* Blog posts */}
-                    <TabPanel>
-                      <BlogsSmall id={id} isOwner />
-                    </TabPanel>
+                    
+                    
+                   
                   </TabPanels>
                 </Tabs>
               </Box>
@@ -535,4 +519,4 @@ function RestaurantView() {
   );
 }
 
-export default RestaurantView;
+export default EventView;

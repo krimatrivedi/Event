@@ -13,7 +13,7 @@ const Home = () => {
                         width="124" height="120" alt="logo"></img>
                 </Center>
                 <Square size='150px' >
-                    <Text fontSize='4xl' color='white'><h1><b>Resti</b>fy</h1></Text>
+                    <Text fontSize='4xl' color='white'><h1><b>Even</b>t</h1></Text>
                 </Square>
             </Flex>
         </Link>

@@ -1,3 +1,16 @@
+.rescontainer {
+  display: flex;
+  align-items: center;
+}
+
+.IconButton {
+  top: 3px !important;
+  right: 3px !important;
+}
+.box-container{
+  align-Items:center;
+}
+
 .pagination-container {
   display: flex;
   list-style-type: none;

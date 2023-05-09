@@ -17,10 +17,14 @@ import logo from "../assets/images/logo.png";
 import * as colors from "../utils/colors";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   FaHome,
+  FaHeart,
   FaNewspaper,
   FaUtensils,
+
+  FaPlus,
   FaCaretDown,
   FaUserCircle,
 } from "react-icons/fa";
@@ -28,9 +32,10 @@ import Notification from "./Notification";
 import axios from "axios";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 
-function NavBar() {
-  const navigate = useNavigate();
 
+//navigate function will lead to app.js to look for route, notification appears if any post is liked, settings (profile,edit profile,log out)
+function NavBar(id) {
+  const navigate = useNavigate();
   const [isOwner, setIsOwner] = useState(false);
   const [restID, setRestID] = useState(0);
 
@@ -47,17 +52,18 @@ function NavBar() {
         config
       )
       .then(respond => {
-        setRestID(respond.data.id);
+        setRestID(respond.data);
         setIsOwner(true);
+
       });
   }, []);
 
   return (
-    <Box bg={colors.purple.medium} h="70px">
+    <Box bg={colors.purple.light} h="70px">
       <Flex justify="space-between">
         <HStack>
           <Image
-            onClick={() => navigate("/restaurants")}
+            onClick={() => navigate("/events")}
             style={{
               cursor: "pointer",
               height: "50px",
@@ -69,7 +75,7 @@ function NavBar() {
           ></Image>
           <Flex>
             <Text
-              onClick={() => navigate("/restaurants")}
+              onClick={() => navigate("/events")}
               cursor="pointer"
               style={{
                 color: "white",
@@ -77,16 +83,18 @@ function NavBar() {
                 fontWeight: "bold",
               }}
             >
-              Resti
+              Even
             </Text>
             <Text
-              onClick={() => navigate("/restaurants")}
+              onClick={() => navigate("/events")}
               cursor="pointer"
               style={{ color: "white", fontSize: "1.75rem" }}
             >
-              fy
+              t
             </Text>
           </Flex>
+
+
           <ButtonGroup
             style={{ marginTop: "0.5rem", marginLeft: "2rem" }}
             spacing={6}
@@ -95,12 +103,12 @@ function NavBar() {
               style={{ textDecoration: "none" }}
               leftIcon={
                 <FaHome
-                  style={{ color: "white", width: "20px", height: "20px" }}
+                  style={{ color: "black", width: "20px", height: "20px" }}
                 />
               }
-              variantColor="white"
+              variantColor="teal"
               variant="link"
-              onClick={() => navigate("/restaurants")}
+              onClick={() => navigate("/events")}
             >
               Home
             </Button>
@@ -108,31 +116,47 @@ function NavBar() {
               style={{ textDecoration: "none" }}
               leftIcon={
                 <FaNewspaper
-                  style={{ color: "white", width: "20px", height: "20px" }}
+                  style={{ color: "black", width: "20px", height: "20px" }}
                 />
               }
-              variantColor="white"
+              variantColor="teal"
               variant="link"
-              onClick={() => navigate("/feed")}
+
+              onClick={() => {
+
+                navigate("/ownerevent")
+
+              }}
             >
+
               Feed
             </Button>
             <Button
               style={{ textDecoration: "none" }}
               leftIcon={
-                <FaUtensils
+                <FaHeart
+                  style={{ color: "black", width: "20px", height: "20px" }}
+                />
+              }
+              variantColor="teal"
+              variant="link"
+              onClick={() => {
+                navigate("/like")
+              }}
+            >
+              Liked
+            </Button>
+            <Button
+              style={{ textDecoration: "none" }}
+              leftIcon={
+                <FaPlus
                   style={{ color: "blue", width: "20px", height: "20px" }}
                 />
               }
-              variantColor="white"
+              variantColor="teal"
               variant="link"
-              onClick={() =>{
-                if (!isOwner) {
-                  navigate("/restaurant/create")
-                }
-                else {
-                  navigate(`/restaurants/${restID}`)
-                }
+              onClick={() => {
+                navigate("/event/create")
               }}
             >
               Create an event
@@ -145,7 +169,9 @@ function NavBar() {
             <MenuButton
               style={{
                 marginLeft: "1.5rem",
-                color: "white",
+                background: "grey",
+                opacity: "0.6",
+                color: "black",
                 textDecoration: "none",
               }}
               variant="link"

@@ -6,7 +6,7 @@ import {
     Box, Flex, Heading, Spacer, Text, Center, Square, FormLabel,
     FormControl, Input, FormHelperText, WrapItem, Avatar, Button,
 } from "@chakra-ui/react";
-import MainNavBar from "../MainNavBar";
+import EventsNavBar from "../EventsNavBar";
 
 
 const ProfileEdit = () => {
@@ -142,8 +142,8 @@ const ProfileEdit = () => {
 
     return (
         <Box>
-            <MainNavBar>
-            </MainNavBar>
+            <EventsNavBar>
+            </EventsNavBar>
 
             <div className="Profile">
                 <FormControl className="profForm" onSubmit={handleSubmit}>

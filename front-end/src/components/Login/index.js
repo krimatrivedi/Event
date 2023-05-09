@@ -71,7 +71,8 @@ const Login = () => {
                         });
                         alert("Login Success.");
                         document.body.style = 'background: transparent;';
-                        navigate('/restaurants');
+                        //home page dashboard
+                        navigate('/events');
                     }
                 })
         }
@@ -97,7 +98,7 @@ const Login = () => {
                         width="124" height="120" alt="logo"></img>
                 </Center>
                 <Square size='150px' >
-                    <Text fontSize='4xl' color='white'><h1><b>Resti</b>fy</h1></Text>
+                <Text fontSize='4xl' color='white'><h1><b>Even</b>t</h1></Text>
                 </Square>
             </Flex>
         </Link>
@@ -125,5 +126,5 @@ const Login = () => {
     );
 }
 
-// Source: https://www.youtube.com/watch?v=EYpdEYK25Dc
+
 export default Login;

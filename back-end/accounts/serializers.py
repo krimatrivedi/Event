@@ -65,12 +65,12 @@ class NotificationRecordsSerializer(serializers.ModelSerializer):
                                    "first_name": rep.get("actor_user").get("first_name"),
                                    "last_name": rep.get("actor_user").get("last_name")}})
 
-        rep.update({"restaurant":
-                    {"id": rep.get("restaurant").get("id"),
-                     "name": rep.get("restaurant").get("name")}})
+        rep.update({"event":
+                    {"id": rep.get("event").get("id"),
+                     "name": rep.get("event").get("name")}})
         return rep
 
     class Meta:
         model = Notification
-        fields = ['id','user', 'type', 'viewed', 'blog', 'restaurant', 'actor_user']
+        fields = ['id','user', 'type', 'viewed', 'event', 'actor_user']
         depth = 1

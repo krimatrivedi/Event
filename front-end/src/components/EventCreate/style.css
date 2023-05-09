@@ -7,7 +7,10 @@
     max-width:80%;
     margin: auto;
 }
-
+.container {
+    display: flex;
+    align-items: center;
+  }
 .profForm {
     width: 80%;
     padding: 50px;
@@ -31,9 +34,8 @@
     font-size: 30px;
 }
 
-.Owner {
-   
-    color: #d1410c,
+.profLabel {
+    color: rgb(0, 0, 0);
 }
 
 .form-ctrl{

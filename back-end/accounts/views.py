@@ -8,13 +8,17 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework_simplejwt.tokens import RefreshToken
+from restaurants.models import Event
 
 from .models import ModifiedUser
 from restaurants.models import Notification
 from .serializers import RegisterSerializer, ModifiedUserSerializer, NotificationRecordsSerializer
+from restaurants.serializers import  EventSerializer
 
 
 # Create your views here.
+
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -41,7 +45,13 @@ class APIUserView(RetrieveAPIView):
 
     def get_object(self):
         return get_object_or_404(ModifiedUser, id=self.request.user.id)
-
+class FetchMyRestaurantaa(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = EventSerializer
+    print("was iii here?")
+    def get_object(self):
+        print(self.request.user.id,"uderer")
+        return get_object_or_404(Event, id=self.request.user.id)
 
 class GetUserView(APIView):
     """Get user by url provided user_id"""
